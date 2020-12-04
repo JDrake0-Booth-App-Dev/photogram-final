@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
-  # Routes for the Comment resource:
+  # Routes for the Homepage:
+  get("/", { :controller => "homepage", :action => "index" })
+  get("/users", { :controller => "homepage", :action => "index" })
+  get("/users/:path_id/feed", {:controller => "homepage", :action => "feed"})
+  get("/users/:path_id", { :controller => "homepage", :action => "show" }) 
 
+  # Routes for the Comment resource:
   # CREATE
   post("/insert_comment", { :controller => "comments", :action => "create" })          
   # READ

@@ -1,0 +1,84 @@
+<h1><%= @user.username %></h1>
+
+
+ <dl>
+  <dt>Private</dt>
+  <dd><%= @user.private %> </dd>
+
+  <dt>Followers</dt>
+  <dd> <%= if @followers.status == accepted
+         p @followers.status.count
+         end%>
+  </dd>
+
+  <dt>Following</dt>
+  <dd>@user.following</dd>
+</dl>
+
+<nav>
+  <ul>
+    <li>
+      <a href="/users/:path_id">Profile</a>
+    </li>
+    <li>
+      <a href="/users/:path_id/liked_photos">Liked photos</a>
+    </li>
+    <li>
+      <a href="/users/:path_id/feed">Feed</a>
+    </li>
+    <li>
+      <a href="/users/:path_id/discover">Discover</a>
+    </li>
+  </ul>
+</nav>
+
+<h2>Feed (<%= @user.own_photos.count %>)</h2>
+
+<table border="1">
+  <tr>
+    <th>
+      Image
+    </th>
+
+    <th>
+      Owner
+    </th>
+
+    <th>
+      Caption
+    </th>
+
+    <th>
+      Posted
+    </th>
+
+    <th></th>
+  </tr>
+
+  <% @user.own_photos.each do |photo| %>
+  <tr>
+    <td>
+      <img src="<%= photo.image %>">
+    </td>
+
+    <td>
+      <%= photo.owner_id %>
+    </td>
+
+    <td>
+      <%= photo.caption %>
+    </td>
+
+    <td>
+      <%= time_ago_in_words(photo.created_at) %>
+    </td>
+    
+    <td>
+      <a href="/photos/<%= photo.id %>">
+        Show details
+      </a>
+    </td>
+  </tr>
+
+  <% end %>
+</table>
