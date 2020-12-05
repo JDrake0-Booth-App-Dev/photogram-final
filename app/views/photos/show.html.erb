@@ -64,7 +64,12 @@
         Add a fan
       </dt>
       <dd>
-        Josh to do this part
+        <form action="/insert_like" method="post">
+          <input type="hidden" name="query_fan_id" value="<%= @current_user.id %>">
+          <input type="hidden" name="query_photo_id" value="<%= @the_photo.id %>">
+
+          <button>Like</button>
+        </form>
       </dd>
 
       <div>
@@ -74,11 +79,31 @@
         </a>
       </div>
 
+      <% if @the_photo.owner_id == @current_user.id %>
       <div>
         <a href="/delete_photo/<%= @the_photo.id %>">
-          Delete photo
+          Delete this photo
         </a>
       </div>
+
+      <div>
+        <form action="modify_photo/<%= @the_photo.id %>" method="post" enctype="multipart/form-data">
+        <label for="image">Image</label>
+        <input type="file" id="image" name="image" class="form-control" placeholder="Enter a URL for the image...">
+
+        <input type="hidden" name="query_recipient_id" value="<%= @current_user.id %>">
+        
+        <label for="caption_box">Caption</label>
+        <textarea id="caption_box" name="query_caption" placeholder="Enter a caption for the photo..."></textarea>
+
+      <button>
+        Update photo
+      </button>
+    </form>
+  </div>
+
+      <% else %>
+      <% end %>
     </div>
     </dl>
   </div>
@@ -116,15 +141,12 @@
 
 <h3>Add a new comment</h3>
 
-<form action="/insert_comment">
-  <label for="browser_author_id">Author_id</label>
-  <input type="text" id="browser_author_id" name="query_author_id" value="<%= @current_user.id %>">
-
+<form action="/insert_comment" method="post">
+  <input type="hidden" name="query_author_id" value="<%= @current_user.id %>">
+  <input type="hidden" name="query_photo_id" value="<%= @the_photo.id %>">
+  
   <label for="browser_comment">Comment</label>
   <textarea id="browser_comment" name="query_body" placeholder="Enter a comment..."></textarea>
-
-  <label for="browser_photo_id">Photo_id</label>
-  <input type="text" id="browser_photo_id" name="query_photo_id" value="<%= @the_photo.id %>">
 
   <button>Add comment</button>
 </form>

@@ -8,7 +8,6 @@
   <dd><%= @user.followers.size %></dd>
   
   <% if @user.username == @current_user %>
-
   <% else %>
   <dd>
     <form action="/insert_follow_request" method="post">
@@ -16,19 +15,22 @@
     <input type="hidden" name="query_sender_id" value="<%= @current_user.id %>">
     <input type="hidden" name="query_status" value="pending">
   </dd>
-
   <button>Follow</button>
   </form>
   </dd>
-
   <% end %>
+
+  <dd>
+    <form action="/delete_follow_request/<%= @user.id %>" method="post">
+  </dd>
+  <button>Unfollow</button>
+  </form>
 
   <dt>Following</dt>
   <dd><%= @user.following.size %></dd>
 </dl>
  
 <% if @current_user == @user %>
-     
   <dt>Edit user </dt>
       <dd> 
       <form action="/modify_user/@current_user.username" method="post">
