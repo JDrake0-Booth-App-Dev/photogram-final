@@ -2,8 +2,10 @@ Rails.application.routes.draw do
   # Routes for the Homepage:
   get("/", { :controller => "homepage", :action => "index" })
   get("/users", { :controller => "homepage", :action => "index" })
-  get("/users/:path_id/feed", {:controller => "homepage", :action => "feed"})
   get("/users/:path_id", { :controller => "homepage", :action => "show" }) 
+  get("/users/:path_id/feed", {:controller => "homepage", :action => "feed"})
+  get("/users/:path_id/liked_photos", { :controller => "homepage", :action => "like" }) 
+  get("/users/:path_id/discover", {:controller => "homepage", :action => "discover"})
 
   # Routes for the Comment resource:
   # CREATE

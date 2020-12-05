@@ -4,6 +4,8 @@ class PhotosController < ApplicationController
 
     @list_of_photos = matching_photos.order({ :created_at => :desc })
 
+    #@user.private = params.fetch("query_private", false)
+
     render({ :template => "photos/index.html.erb" })
   end
 

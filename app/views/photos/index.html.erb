@@ -11,14 +11,10 @@
 <div>
   <div>
     <form action="/insert_photo" method="post" enctype="multipart/form-data">
-        <label for="image_box">
-          Image
-        </label>
-        <input type="file" id="image_box" name="query_image" placeholder="Enter a URL for the image...">
+        <label for="image">Image</label>
+        <input type="file" id="image" name="image" class="form-control" placeholder="Enter a URL for the image...">
 
-        <label for="caption_box">
-          Caption
-        </label>
+        <label for="caption_box">Caption</label>
         <textarea id="caption_box" name="query_caption" placeholder="Enter a caption for the photo..."></textarea>
 
       <button>
@@ -44,7 +40,7 @@
       <% @list_of_photos.each do |a_photo| %>
       <tr>
         <td>
-          <img src="<%= a_photo.image %>">
+          <img src="<%= a_photo.image %>" class="img-responsive">
         </td>
 
         <td>

@@ -43,11 +43,11 @@
   <% @user.own_photos.each do |photo| %>
   <tr>
     <td>
-      <img src="<%= photo.image %>">
+      <img src="<%= a_photo.image %>" class="img-responsive">
     </td>
 
     <td>
-      <%= User.where({ :id => photo.owner_id }).at(0).username %>
+      <%= photo.owner_id %>
     </td>
 
     <td>
